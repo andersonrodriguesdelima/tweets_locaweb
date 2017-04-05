@@ -7,9 +7,20 @@
 			</tr>
 		</td>
 		<td>
+		<% unless logado %>
 			<tr>
 				<h1><a href="/init"> INICIAR </a></h1>
 			</tr>
+		<% else %>
+		<td>
+			<tr>
+				<h1><a href="/most_relevants"> MAIS RELEVANTES </a> | <%= session[:token] %></h1>
+			</tr>
+			<tr>
+				<h1><a href="/logout"> SAIR </a></h1>
+			</tr>
+			</td>
+		<% end %>
 		</td>
 	</table>
 </body>
