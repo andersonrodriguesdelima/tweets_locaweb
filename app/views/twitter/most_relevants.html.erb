@@ -1,0 +1,18 @@
+<html>
+<body>
+	<table>
+		<td>
+			<tr>
+				<h1>MOST RELEVANT</h1>
+			</tr>
+		</td>
+		<td>
+				<% @result.each do |t| %>
+					<tr>
+				<%= t %></br>
+			</tr>
+				<% end -%>
+		</td>
+	</table>
+</body>
+</html>
