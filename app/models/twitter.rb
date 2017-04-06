@@ -23,24 +23,26 @@ class Twitter < ApplicationRecord
       	  end	
         end
       end
-      result = self.order_tweets(result)
     end
+    result = self.order_tweets(result)
     
     result
   end
 
   def self.order_tweets(tweets)
-    ordenados = Array.new
-    cont = 0
+    ordenados = []
+    maior_numero_followers = 0
     tweets.each do |t|
-      if t['user']['followers_count'] #> ordenados[cont]['user']['followers_count']
-      	ordenados << t
-      else
-        ordenados[cont] << t['user']['followers_count']
-      end
-    end
+		if t['user']['followers_count'] > maior_numero_followers
+			puts "#{maior_numero_followers} // #{t['user']['followers_count']}"
+			ordenados.unshift(t)
+			maior_numero_followers = t['user']['followers_count']
+		else
+			ordenados << t
+		end
+	end
 
-    ordenados
+	ordenados
   end
 
 end
