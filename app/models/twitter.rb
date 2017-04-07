@@ -25,7 +25,9 @@ class Twitter < ApplicationRecord
           	:id_tweet => tweet['id_str'],
           	:retweets => tweet['retweet_count'],
           	:likes => tweet['favorite_count'],
-          	:user_twitter_id => user.twitter_id)
+          	:twitter_created_at => tweet['created_at'].to_datetime,
+          	:user_twitter_id => user.twitter_id,
+          	:usuario_id => user.id)
 
           #result << newtweet
         end
@@ -41,7 +43,9 @@ class Twitter < ApplicationRecord
           	:id_tweet => tweet['id_str'],
           	:retweets => tweet['retweet_count'],
           	:likes => tweet['favorite_count'],
-          	:user_twitter_id => user.twitter_id)
+          	:twitter_created_at => tweet['created_at'].to_datetime,
+          	:user_twitter_id => user.twitter_id,
+          	:usuario_id => user.id)
           
       	    #result << newtweet
       	  end
