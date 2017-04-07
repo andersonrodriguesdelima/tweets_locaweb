@@ -10,14 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406202021) do
+ActiveRecord::Schema.define(version: 20170407153633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "tweets", force: :cascade do |t|
+    t.integer  "id_tweet"
+    t.string   "text"
+    t.integer  "user_twitter_id"
+    t.integer  "likes"
+    t.integer  "retweets"
+    t.datetime "twitter_created_at"
+    t.integer  "usuario_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["usuario_id"], name: "index_tweets_on_usuario_id", using: :btree
+  end
+
   create_table "twitters", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "usuarios", force: :cascade do |t|
+    t.integer  "twitter_id"
+    t.string   "screen_name"
+    t.integer  "numero_followers"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
 end

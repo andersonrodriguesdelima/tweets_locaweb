@@ -1,7 +1,7 @@
 class Twitter < ApplicationRecord
   
   def self.search_most_relevants
-  	uri = URI('http://tweeps.locaweb.com.br/tweeps?Q=%40locaweb')
+  	uri = URI('http://tweeps.locaweb.com.br/tweeps')
 
     req = Net::HTTP::Get.new(uri)
     req['Username'] = 'anderson.rodrigues.lima@hotmail.com'
@@ -14,35 +14,42 @@ class Twitter < ApplicationRecord
     json = JSON.parse respost.body
     json.each do |key, tweets|
       tweets.each do |tweet|
-        if tweet['in_reply_to_user_id_str'].eql? "42"
-          result << tweet
+        if tweet['in_reply_to_user_id_str'].eql? "42" and Tweet.find_by(:id_tweet => tweet['id_str']).nil?
+          user = Usuario.create(
+          	:twitter_id => tweet['user']['id_str'],
+          	:screen_name => tweet['user']['screen_name'],
+          	:numero_followers => tweet['user']['followers_count'])
+
+          newtweet = Tweet.create(
+          	:text => tweet['text'],
+          	:id_tweet => tweet['id_str'],
+          	:retweets => tweet['retweet_count'],
+          	:likes => tweet['favorite_count'],
+          	:user_twitter_id => user.twitter_id)
+
+          #result << newtweet
         end
         tweet['entities']['user_mentions'].each do |mentions|
-      	  if mentions['id'].eql? 42
-      	    result << tweet
-      	  end	
+      	  if mentions['id'].eql? 42 and Tweet.find_by(:id_tweet => tweet['id_str']).nil?
+			user = Usuario.create(
+          	:twitter_id => tweet['user']['id_str'],
+          	:screen_name => tweet['user']['screen_name'],
+          	:numero_followers => tweet['user']['followers_count'])
+
+          	newtweet = Tweet.create(
+          	:text => tweet['text'],
+          	:id_tweet => tweet['id_str'],
+          	:retweets => tweet['retweet_count'],
+          	:likes => tweet['favorite_count'],
+          	:user_twitter_id => user.twitter_id)
+          
+      	    #result << newtweet
+      	  end
         end
       end
     end
-    result = self.order_tweets(result)
-    
-    result
-  end
-
-  def self.order_tweets(tweets)
-    ordenados = []
-    maior_numero_followers = 0
-    tweets.each do |t|
-		if t['user']['followers_count'] > maior_numero_followers
-			puts "#{maior_numero_followers} // #{t['user']['followers_count']}"
-			ordenados.unshift(t)
-			maior_numero_followers = t['user']['followers_count']
-		else
-			ordenados << t
-		end
+    Tweet.all.each do |t|
+    	result << t.text
 	end
-
-	ordenados
   end
-
 end
