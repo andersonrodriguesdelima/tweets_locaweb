@@ -14,6 +14,7 @@ class Twitter < ApplicationRecord
     json = JSON.parse respost.body
     json.each do |key, tweets|
       tweets.each do |tweet|
+
         if tweet['in_reply_to_user_id_str'].eql? "42" and Tweet.find_by(:id_tweet => tweet['id_str']).nil?
           user = Usuario.create(
           	:twitter_id => tweet['user']['id_str'],
@@ -28,9 +29,8 @@ class Twitter < ApplicationRecord
           	:twitter_created_at => tweet['created_at'].to_datetime,
           	:user_twitter_id => user.twitter_id,
           	:usuario_id => user.id)
-
-          #result << newtweet
         end
+
         tweet['entities']['user_mentions'].each do |mentions|
       	  if mentions['id'].eql? 42 and Tweet.find_by(:id_tweet => tweet['id_str']).nil?
 			user = Usuario.create(
@@ -46,14 +46,15 @@ class Twitter < ApplicationRecord
           	:twitter_created_at => tweet['created_at'].to_datetime,
           	:user_twitter_id => user.twitter_id,
           	:usuario_id => user.id)
-          
-      	    #result << newtweet
       	  end
         end
       end
     end
+
     Tweet.all.each do |t|
-    	result << t.text
+    	result << "#{t.text} - Usuario @#{t.usuario.screen_name}"
 	end
+
+	result
   end
 end
