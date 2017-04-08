@@ -4,7 +4,6 @@ class CreateUsuarios < ActiveRecord::Migration[5.0]
       t.integer :twitter_id
       t.string :screen_name
       t.integer :numero_followers
-      #t.references :tweet
 
       t.timestamps
     end
