@@ -1,18 +1,33 @@
 <html>
-<body>
-	<table>
-		<td>
+	<body>
+		<table>
 			<tr>
-				<h1>MOST RELEVANT</h1>
+				<td>
+					<h1>MOST RELEVANT - <%= Tweet.tweets_ordenados.size %> Tweets</h1>
+				</td>
 			</tr>
-		</td>
-		<td>
-				<% @result.each do |t| %>
-					<tr>
-				<%= t %></br></br>
-			</tr>
-				<% end -%>
-		</td>
-	</table>
-</body>
+			<% Tweet.tweets_ordenados.each do |t| %>
+				<tr>
+					<td>
+						@<%= t.usuario.screen_name %>
+					</td>
+					<td>
+						<%= t.usuario.numero_followers %>
+					</td>
+					<td>
+						<%= t.retweets %>
+					</td>
+					<td>
+						<%= t.likes %>
+					</td>
+					<td>
+					<%= t.text %>
+					</td>
+					<td>
+						<%= t.try(:twitter_created_at).try(:to_datetime) -%>
+					</td>
+				</tr>
+			<% end -%>
+		</table>
+	</body>
 </html>
