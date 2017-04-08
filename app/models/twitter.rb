@@ -1,6 +1,6 @@
 class Twitter < ApplicationRecord
   
-  def self.most_relevants
+  def self.find_tweet
 	json = self.obtain_json
 
     json.each do |key, tweets|
