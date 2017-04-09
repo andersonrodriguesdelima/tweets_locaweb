@@ -5,6 +5,6 @@ class TwitterController < ApplicationController
 	end
 
 	def most_mentions
-		#Usuario.most_mentions
+		Usuario.most_mentions
     end
 end

@@ -1,6 +1,6 @@
 class Twitter < ApplicationRecord
   
-  def self.find_tweet
+  def self.find_tweets
 	json = self.obtain_json
 
     json.each do |key, tweets|
