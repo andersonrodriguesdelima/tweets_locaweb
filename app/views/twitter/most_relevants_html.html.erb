@@ -1,0 +1,56 @@
+<html>
+	<body>
+		<table>
+			<tr>
+				<td>
+					<h1>MOST RELEVANT - <%= Tweet.most_relevants.size %> Tweets</h1>
+				</td>
+				<td>
+					<h1><a href="/home"> INICIO </a></h1>
+				</td>
+			</tr>
+			<tr>
+				<td style="border: solid 1px black">
+					SCREEN NAME
+				</td>
+				<td>
+					NUMERO FOLLOWERS
+				</td>
+				<td>
+					RETWEETS
+				</td>
+				<td>
+					LIKES
+				</td>
+				<td>
+					TEXTO
+				</td>
+				<td>
+					DATA DA CRIAÇÃO
+				</td>
+			</tr>
+			<% Tweet.most_relevants_html.each do |t| %>
+				<tr>
+					<td>
+						@<%= t.usuario.screen_name %>
+					</td>
+					<td>
+						<%= t.usuario.numero_followers %>
+					</td>
+					<td>
+						<%= t.retweets %>
+					</td>
+					<td>
+						<%= t.likes %>
+					</td>
+					<td>
+					<%= t.text %>
+					</td>
+					<td>
+						<%= t.try(:twitter_created_at).try(:to_datetime) -%>
+					</td>
+				</tr>
+			<% end -%>
+		</table>
+	</body>
+</html>

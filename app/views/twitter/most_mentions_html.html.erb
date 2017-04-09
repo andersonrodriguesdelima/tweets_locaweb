@@ -1,0 +1,59 @@
+<html>
+	<body>
+		<table>
+			<tr>
+				<td>
+					<h1>MOST MENTIONS</h1>
+				</td>
+				<td>
+					<h1><a href="/home"> INICIO </a></h1>
+				</td>
+			</tr>
+			<% Usuario.order_followers.each do |u| %>
+			<table>
+				<tr>
+					<td>
+						Usuário: @<%= u.screen_name %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						NUMERO FOLLOWERS
+					</td>
+					<td>
+						RETWEETS
+					</td>
+					<td>
+						LIKES
+					</td>
+					<td>
+						TEXTO
+					</td>
+					<td>
+						DATA DA CRIAÇÃO
+					</td>
+				</tr>
+				<% u.tweets.each do |t| %>
+				<tr>
+					<td>
+						<%= u.numero_followers %>
+					</td>
+					<td>
+						<%= t.retweets %>
+					</td>
+					<td>
+						<%= t.likes %>
+					</td>
+					<td>
+					<%= t.text %>
+					</td>
+					<td>
+						<%= t.try(:twitter_created_at).try(:to_datetime) -%>
+					</td>
+				</tr></br></br>
+				</table>
+					<% end -%>
+			<% end -%>
+		</table>
+	</body>
+</html>
