@@ -19,7 +19,7 @@ RSpec.describe Usuario, :type => :model do
 
 		@hash_info = Hash.new
 		@hash_info.store('screen_name', "#{@usuario.screen_name}")
-        @hash_info.store('url_twitter', "http://twitter.com/#{@usuario.screen_name}")
+        @hash_info.store('url_twitter', "https://twitter.com/#{@usuario.screen_name}")
         @hash_info.store('followers_cont', "#{@usuario.numero_followers}")
         @hash_info.store('retweets', "#{@tweet.retweets}")
         @hash_info.store('favorites_count', "#{@tweet.likes}")

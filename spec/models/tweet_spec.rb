@@ -21,7 +21,7 @@ RSpec.describe Tweet, :type => :model do
 		tweets = Tweet.joins("INNER JOIN usuarios ON usuarios.id = tweets.usuario_id").order('usuarios.numero_followers DESC, retweets DESC, likes DESC')
 		tweets.each do |t|
     		@hash_info.store('screen_name', "#{t.usuario.screen_name}")
-            @hash_info.store('url_twitter', "http://twitter.com/#{t.usuario.screen_name}")
+            @hash_info.store('url_twitter', "https://twitter.com/#{t.usuario.screen_name}")
             @hash_info.store('followers_cont', "#{t.usuario.numero_followers}")
             @hash_info.store('retweets', "#{t.retweets}")
             @hash_info.store('favorites_count', "#{t.likes}")
