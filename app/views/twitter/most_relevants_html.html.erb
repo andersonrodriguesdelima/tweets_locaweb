@@ -1,55 +1,57 @@
 <html>
 	<body>
-		<table>
+		<table id='most_relevants_container'>
 			<tr>
 				<td>
-					<h1>MOST RELEVANT - <%= Tweet.most_relevants.size %> Tweets</h1>
-				</td>
-				<td>
-					<h1><a href="/home"> INICIO </a></h1>
+					<h1>MOST RELEVANTS - <a href="/home">INICIO</a> </h1>
 				</td>
 			</tr>
+		</table>
+		<table id='most_relevants_container_header'>
 			<tr>
-				<td style="border: solid 1px black">
+				<td class='most_relevants_screen_name'>
 					SCREEN NAME
 				</td>
-				<td>
+				<td class='most_relevants_header'>
 					NUMERO FOLLOWERS
 				</td>
-				<td>
+				<td class='most_relevants_retweets'>
 					RETWEETS
 				</td>
-				<td>
+				<td class='most_relevants_likes'>
 					LIKES
 				</td>
-				<td>
+				<td class='most_relevants_text'>
 					TEXTO
 				</td>
-				<td>
+				<td class='most_relevants_data'>
 					DATA DA CRIAÇÃO
 				</td>
 			</tr>
+		</table>
 			<% Tweet.most_relevants_html.each do |t| %>
+			<table id='most_relevants_container_options'>
 				<tr>
-					<td>
-						@<%= t.usuario.screen_name %>
+					<td class='most_relevants_screen_name'>
+						<a href='https://twitter.com/<%= t.usuario.screen_name %>'>@<%= t.usuario.screen_name %></a>
 					</td>
-					<td>
+					<td class='most_relevants_num_followers'>
 						<%= t.usuario.numero_followers %>
 					</td>
-					<td>
+					<td class='most_relevants_retweets'>
 						<%= t.retweets %>
 					</td>
-					<td>
+					<td class='most_relevants_likes'>
 						<%= t.likes %>
 					</td>
-					<td>
+					<td class='most_relevants_text'>
 					<%= t.text %>
 					</td>
-					<td>
-						<%= t.try(:twitter_created_at).try(:to_datetime) -%>
+					<td class='most_relevants_data'>
+						<%= t.try(:twitter_created_at).try(:to_datetime).strftime("%d/%m/%Y %Hh %Mmin") -%>
 					</td>
 				</tr>
+			</table>
 			<% end -%>
 		</table>
 	</body>

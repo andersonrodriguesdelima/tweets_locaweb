@@ -12,15 +12,15 @@ class Tweet < ApplicationRecord
         hash_info = Hash.new
         tweets.each do |t|
     		hash_info.store('screen_name', "#{t.usuario.screen_name}")
-            hash_info.store('url_twitter', "http://twitter.com/#{t.usuario.screen_name}")
+            hash_info.store('url_twitter', "https://twitter.com/#{t.usuario.screen_name}")
             hash_info.store('followers_cont', "#{t.usuario.numero_followers}")
             hash_info.store('retweets', "#{t.retweets}")
             hash_info.store('favorites_count', "#{t.likes}")
             hash_info.store('text', "#{t.text}")
             hash_info.store('created_at', "#{t.twitter_created_at}")
+            buffer << hash_info.to_json
         end
 
-
-        hash_info.to_json
+        buffer
     end
 end

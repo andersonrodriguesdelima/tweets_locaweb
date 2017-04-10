@@ -1,57 +1,56 @@
 <html>
 	<body>
-		<table>
+		<table id='most_mentions_container'>
 			<tr>
 				<td>
-					<h1>MOST MENTIONS</h1>
-				</td>
-				<td>
-					<h1><a href="/home"> INICIO </a></h1>
+					<h1>MOST MENTIONS - <a href="/home"> INICIO </a></h1>
 				</td>
 			</tr>
 			<% Usuario.order_followers.each do |u| %>
-			<table>
+			<table id='most_mentions_container_header'>
 				<tr>
 					<td>
-						Usuário: @<%= u.screen_name %>
+						Usuário: <a href='https://twitter.com/<%= u.screen_name -%>'>@<%= u.screen_name %></a>
 					</td>
 				</tr>
+			</table>
+			<table id='most_mentions_container_options'>
 				<tr>
-					<td>
+					<td class='most_mentions_num_followers'>
 						NUMERO FOLLOWERS
 					</td>
-					<td>
+					<td class='most_mentions_retweets'>
 						RETWEETS
 					</td>
-					<td>
+					<td class='most_mentions_likes'>
 						LIKES
 					</td>
-					<td>
+					<td class='most_mentions_text'>
 						TEXTO
 					</td>
-					<td>
+					<td class='most_mentions_data'>
 						DATA DA CRIAÇÃO
 					</td>
 				</tr>
 				<% u.tweets.each do |t| %>
 				<tr>
-					<td>
+					<td class='most_mentions_num_followers'>
 						<%= u.numero_followers %>
 					</td>
-					<td>
+					<td class='most_mentions_retweets'>
 						<%= t.retweets %>
 					</td>
-					<td>
+					<td class='most_mentions_likes'>
 						<%= t.likes %>
 					</td>
-					<td>
+					<td class='most_mentions_text'>
 					<%= t.text %>
 					</td>
-					<td>
-						<%= t.try(:twitter_created_at).try(:to_datetime) -%>
+					<td class='most_mentions_data'>
+						<%= t.try(:twitter_created_at).try(:to_datetime).strftime("%d/%m/%Y %Hh %Mmin") -%>
 					</td>
-				</tr></br></br>
-				</table>
+				</tr>
+				</table></br></br>
 					<% end -%>
 			<% end -%>
 		</table>

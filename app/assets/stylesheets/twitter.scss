@@ -1,3 +1,28 @@
-// Place all the styles related to the twitter controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#most_relevants_container{width: 100%; text-align:center;}
+
+#most_relevants_container_header{width: 100%; text-align:center; background-color: #E0E0E0; margin: auto; border: solid 1px #666666;}
+
+.most_relevants_screen_name{width: 14%; text-align:center; font-size: 16px;}
+.most_relevants_num_followers{width: 7%; text-align:center; font-size: 16px;}
+.most_relevants_retweets{width: 7%; text-align:center; font-size: 16px;}
+.most_relevants_likes{width: 7%; text-align:center; font-size: 16px;}
+.most_relevants_text{width: 45%; text-align:center; font-size: 16px;}
+.most_relevants_data{width: 20%; text-align:center; font-size: 16px;}
+
+#most_relevants_container_options{width: 100%; text-align:center; margin:auto; border: solid 1px #696969;}
+
+.most_relevants_options{width: 20%; text-align:center; font-size: 16px;}
+
+
+#most_mentions_container{width: 100%; text-align:center;}
+#most_mentions_container_header{width: 100%; text-align:left; background-color: #E0E0E0; border: solid 1px #666666;}
+
+.most_mentions_num_followers{width: 15%; text-align:center; font-size: 16px;}
+.most_mentions_retweets{width: 15%; text-align:center; font-size: 16px;}
+.most_mentions_likes{width: 15%; text-align:center; font-size: 16px;}
+.most_mentions_text{width: 45%; text-align:center; font-size: 16px;}
+.most_mentions_data{width: 10%; text-align:center; font-size: 16px;}
+
+#most_mentions_container_options{width: 100%; text-align:center; margin:auto; border: solid 1px #696969;}
+
+.most_mentions_options{width: 20%; text-align:center; font-size: 16px;}
