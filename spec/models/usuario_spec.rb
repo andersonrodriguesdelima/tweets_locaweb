@@ -12,7 +12,7 @@ RSpec.describe Usuario, :type => :model do
 			:id_tweet => 1000,
 			:retweets => 0,
 			:likes => 0,
-			:twitter_created_at => "01-01-2017 00:00".to_datetime,
+			:twitter_created_at => "01-01-2017 01:01".to_datetime,
 			:user_twitter_id => @usuario.twitter_id,
 			:usuario_id => @usuario.id)
 		@tweet.save!
