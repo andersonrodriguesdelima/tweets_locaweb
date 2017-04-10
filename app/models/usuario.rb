@@ -6,9 +6,9 @@ class Usuario < ApplicationRecord
     end
 
     def self.most_mentions
-		result = []
-		Usuario.order_followers.each do |u|
+        buffer = ""
         hash_info = Hash.new
+        Usuario.order_followers.each do |u|
         u.tweets.each do |t|
     		hash_info.store('screen_name', "#{u.screen_name}")
             hash_info.store('url_twitter', "http://twitter.com/#{t.usuario.screen_name}")
@@ -17,11 +17,11 @@ class Usuario < ApplicationRecord
             hash_info.store('favorites_count', "#{t.likes}")
             hash_info.store('text', "#{t.text}")
             hash_info.store('created_at', "#{t.twitter_created_at}")
-        	end
-            result << hash_info
+            buffer << hash_info.to_json
+        end
         end
 
-        result.to_json
+        buffer
     end
 
     def self.order_followers
